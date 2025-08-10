@@ -570,6 +570,7 @@ end
         print("clicked")
     end
 })
+
 local Button = Tab1:Button({
     Title = "Random Secret(sea 1)",
     Desc = "chỉ là 1 cái nút",
@@ -1080,6 +1081,7 @@ game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-683.979
         print("clicked")
     end
 })
+
 local Button = Tab7:Button({
     Title = "đảo platinum",
     Desc = "",
@@ -1358,33 +1360,4 @@ button.InputBegan:Connect(function(input)
 end)
 
 button.InputChanged:Connect(function(input)
-	if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
-		dragInput = input
-	end
-end)
-
-game:GetService("UserInputService").InputChanged:Connect(function(input)
-	if input == dragInput and dragging then
-		local delta = input.Position - mouseStartPos
-		button.Position = UDim2.new(
-			elementStartPos.X.Scale, elementStartPos.X.Offset + delta.X,
-			elementStartPos.Y.Scale, elementStartPos.Y.Offset + delta.Y
-		)
-	end
-end)
-
--- Click để kích hoạt chức năng
-local isWindowOpen = false
-
-button.MouseButton1Click:Connect(function()
-	isWindowOpen = not isWindowOpen
-	if isWindowOpen then
-		if Window and Window.Open then
-			Window:Open()
-		end
-	else
-		if Window and Window.Close then
-			Window:Close()
-		end
-	end
-end) 
+	if input.UserInputTy
